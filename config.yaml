@@ -169,8 +169,6 @@ additional_software:
 #
 # Default: []
 install_slideshow:
-  - image_path: 'slideshow/horizon-logo.svg'
-    seconds: 5
   - image_path: 'slideshow/ZlataPraha.jpg'
     seconds: 15
   - image_path: 'slideshow/WarsawBlueHour.jpg'
@@ -190,7 +188,7 @@ install_slideshow:
 #
 # Default: browser: 'epiphany', disks: 'gnome-disks', reboot: 'reboot', wifi: 'gnome-control-center wifi'
 commands:
-  browser: 'flatpak run --branch=stable --command=firefox --file-forwarding org.mozilla.firefox'
+  browser: 'firefox'
   disks  : 'partitionmanager'
   reboot : 'systemctl reboot'
   wifi   : 'systemsettings kcm_networkmanager'
