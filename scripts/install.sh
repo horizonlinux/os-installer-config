@@ -38,9 +38,11 @@ echo 'OSI_ENCRYPTION_PIN       ' $OSI_ENCRYPTION_PIN
 echo ''
 
 bootc install to-disk --composefs-backend --source-imgref registry:ghcr.io/horizonlinux/horizon:latest --filesystem btrfs --wipe --bootloader systemd $OSI_DEVICE_PATH
-sudo mount $OSI_DEVICE_PATH /mnt/sysroot
+
+OSI_DEVICE_ROOT_PARTITION_PATH=$(sudo blkid /dev/nvme0n1* | grep btrfs)
+sudo mount $OSI_DEVICE_ROOT_PARTITION_PATH /mnt/sysroot
 sudo cp -r /var/lib/flatpak /mnt/sysroot/state/os/default/var/lib/flatpak
-sudo umount $OSI_DEVICE_PATH
+sudo umount $OSI_DEVICE_ROOT_PARTITION_PATH
 
 echo
 
