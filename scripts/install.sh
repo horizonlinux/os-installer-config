@@ -39,7 +39,7 @@ echo ''
 
 bootc install to-disk --composefs-backend --source-imgref registry:ghcr.io/horizonlinux/horizon:latest --filesystem btrfs --wipe --bootloader systemd $OSI_DEVICE_PATH
 
-OSI_DEVICE_ROOT_PARTITION_PATH=$(sudo blkid /dev/nvme0n1* | grep btrfs)
+OSI_DEVICE_ROOT_PARTITION_PATH=$(sudo blkid $OSI_DEVICE_PATH* | grep btrfs | awk '{print $1}' | tr -d :)
 sudo mount $OSI_DEVICE_ROOT_PARTITION_PATH /mnt/sysroot
 sudo cp -r /var/lib/flatpak /mnt/sysroot/state/os/default/var/lib/flatpak
 sudo umount $OSI_DEVICE_ROOT_PARTITION_PATH
