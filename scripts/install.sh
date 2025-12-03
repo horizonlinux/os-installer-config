@@ -38,9 +38,9 @@ echo 'OSI_ENCRYPTION_PIN       ' $OSI_ENCRYPTION_PIN
 echo ''
 
 bootc install to-disk --composefs-backend --source-imgref registry:ghcr.io/horizonlinux/horizon:latest --filesystem btrfs --wipe --bootloader systemd $OSI_DEVICE_PATH
-mount $OSI_DEVICE_PATH /mnt/sysroot
-cp -r /var/lib/flatpak /mnt/sysroot/state/os/default/var/lib/flatpak
-umount $OSI_DEVICE_PATH
+sudo mount $OSI_DEVICE_PATH /mnt/sysroot
+sudo cp -r /var/lib/flatpak /mnt/sysroot/state/os/default/var/lib/flatpak
+sudo umount $OSI_DEVICE_PATH
 
 echo
 
