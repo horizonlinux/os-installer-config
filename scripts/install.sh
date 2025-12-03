@@ -43,7 +43,7 @@ OSI_DEVICE_ROOT_PARTITION_PATH=$(sudo blkid $OSI_DEVICE_PATH* | grep btrfs | awk
 sudo mkdir -p /mnt/sysroot
 sudo mount -$OSI_DEVICE_ROOT_PARTITION_PATH /mnt/sysroot
 sudo mkdir -p /mnt/sysroot/state/os/default/var/lib/flatpak
-sudo cp -r /var/lib/flatpak /mnt/sysroot/state/os/default/var/lib/flatpak
+sudo cp -r /var/lib/flatpak /mnt/sysroot/state/os/default/var/lib
 sudo umount $OSI_DEVICE_ROOT_PARTITION_PATH
 
 echo
