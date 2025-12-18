@@ -37,15 +37,12 @@ echo 'OSI_USE_ENCRYPTION       ' $OSI_USE_ENCRYPTION
 echo 'OSI_ENCRYPTION_PIN       ' $OSI_ENCRYPTION_PIN
 echo ''
 
-bootc install to-disk --composefs-backend --source-imgref registry:ghcr.io/horizonlinux/horizon:latest --filesystem btrfs --wipe --bootloader systemd $OSI_DEVICE_PATH
+arch=$(uname -m)
 
-OSI_DEVICE_ROOT_PARTITION_PATH=$(sudo blkid $OSI_DEVICE_PATH* | grep btrfs | awk '{print $1}' | tr -d :)
-sudo mkdir -p /mnt/sysroot
-sudo mount -$OSI_DEVICE_ROOT_PARTITION_PATH /mnt/sysroot
-sudo mkdir -p /mnt/sysroot/state/os/default/var/lib/flatpak
-sudo cp -r /var/lib/flatpak /mnt/sysroot/state/os/default/var/lib
-sudo umount $OSI_DEVICE_ROOT_PARTITION_PATH
-
+if [[ "$arch" == "x86_64" ]]; then
+   bootc install to-disk --composefs-backend --source-imgref registry:ghcr.io/horizonlinux/horizon:latest --filesystem btrfs --wipe --bootloader systemd $OSI_DEVICE_PATH
+elif [[ "$arch" == "aarch64" ]]; then
+   bootc install to-disk --composefs-backend --source-imgref registry:ghcr.io/horizonlinux/horizon-arm64:latest --filesystem btrfs --wipe --bootloader systemd $OSI_DEVICE_PATH
 echo
 
 echo 'Installation complete!'
