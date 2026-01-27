@@ -37,7 +37,7 @@ echo 'OSI_USE_ENCRYPTION       ' $OSI_USE_ENCRYPTION
 echo 'OSI_ENCRYPTION_PIN       ' $OSI_ENCRYPTION_PIN
 echo ''
 
-bootc install to-disk --source-imgref registry:ghcr.io/horizonlinux/horizon:latest --filesystem xfs --wipe $OSI_DEVICE_PATH
+bootc install to-disk --source-imgref containers-storage:ghcr.io/horizonlinux/horizon:latest --filesystem xfs --wipe $OSI_DEVICE_PATH
 
 echo 'Installation complete!'
 
