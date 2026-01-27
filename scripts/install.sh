@@ -37,13 +37,7 @@ echo 'OSI_USE_ENCRYPTION       ' $OSI_USE_ENCRYPTION
 echo 'OSI_ENCRYPTION_PIN       ' $OSI_ENCRYPTION_PIN
 echo ''
 
-arch=$(uname -m)
-
-if [[ "$arch" == "x86_64" ]]; then
-   bootc install to-disk --composefs-backend --source-imgref registry:ghcr.io/horizonlinux/horizon:latest --filesystem btrfs --wipe --bootloader systemd $OSI_DEVICE_PATH
-elif [[ "$arch" == "aarch64" ]]; then
-   bootc install to-disk --composefs-backend --source-imgref registry:ghcr.io/horizonlinux/horizon-arm64:latest --filesystem btrfs --wipe --bootloader systemd $OSI_DEVICE_PATH
-echo
+bootc install to-disk --source-imgref registry:ghcr.io/horizonlinux/horizon:latest --filesystem xfs --wipe $OSI_DEVICE_PATH
 
 echo 'Installation complete!'
 
