@@ -188,7 +188,7 @@ install_slideshow:
 #
 # Default: browser: 'epiphany', disks: 'gnome-disks', reboot: 'reboot', wifi: 'gnome-control-center wifi'
 commands:
-  browser: 'firefox'
+  browser: 'flatpak run org.mozilla.firefox'
   disks  : 'partitionmanager'
   reboot : 'systemctl reboot'
   wifi   : 'systemsettings kcm_networkmanager'
